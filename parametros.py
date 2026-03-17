@@ -81,12 +81,12 @@ SITU_DEFAULT = {
     "precio_bus":              94_617.37,
     "tasa_interes_anual":        0.0948,
     "plazo_anios_financ":             7,
-    "porcentaje_financiado":       0.80,
-    "porcentaje_equity":           0.20,
+    "porcentaje_financiado":       0.70,
+    "porcentaje_equity":           0.30,
 
     # --- Costos Fijos: Sueldos ---
     "salario_mensual":           960.85,
-    "choferes_por_bus":             2.4,
+    "choferes_por_bus":             2.2,
 
     # --- Costos Fijos: Gastos Administrativos (mensuales) ---
     "gastos_adm_items": [

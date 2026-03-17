@@ -288,8 +288,8 @@ def render_sidebar() -> dict:
             )
             p["porcentaje_financiado"] = st.slider(
                 "% Financiado con deuda", min_value=0.0, max_value=1.0,
-                value=float(p["porcentaje_financiado"]), step=0.05,
-                format="%.0f%%",
+                value=float(p["porcentaje_financiado"]), step=0.01,
+                format="%.2f%%",
                 help=TOOLTIPS["porcentaje_financiado"], key="pct_financiado"
             )
             p["porcentaje_equity"] = 1.0 - p["porcentaje_financiado"]
