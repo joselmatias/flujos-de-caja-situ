@@ -66,14 +66,14 @@ SITU_DEFAULT = {
     "div_post_7":      1.5,   # divisor años 7-12
 
     "km_totales_buses": 869_963,
-    "costo_km_buses":         0.22,
+    "costo_km_buses":         0.11,
 
     # --- Costos Variables: Combustible ---
     "precio_galon":          2.80,
     "rend_km_gal_buses":     8.37,   # km/gal buses 12 m
 
     # --- Costos Variables: Neumaticos ---
-    "costo_llanta":                   450.0,
+    "costo_llanta":                   383.0,
     "llantas_por_bus":                    6,
     "renovaciones_llantas_por_anio":      1,
 
