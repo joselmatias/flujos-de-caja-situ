@@ -747,12 +747,6 @@ def exportar_excel(resultado: dict, nombre_troncal: str = "SITU",
                 float(p["tasa_descuento"] * 100), "%")
         r = _pr(ws2, r, "ITOR (% sobre ingresos recaudo)",
                 float(p["itor_porcentaje_oper_recaudo"] * 100), "%")
-        r = _pr(ws2, r, "ITOR transporte de valores anual",
-                float(p["itor_transporte_valores_anual"]), "USD/año")
-        r = _pr(ws2, r, "ITOR fideicomiso administración anual",
-                float(p["itor_fideicomiso_admin_anual"]), "USD/año")
-        r = _pr(ws2, r, "Fee Metrovía",
-                float(p["fee_metrovia_por_pasajero"]), "USD/pasajero")
         r = _pr(ws2, r, "Tasa impuesto a la renta",
                 float(p["tasa_impuesto_renta"] * 100), "%")
 
