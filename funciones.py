@@ -271,34 +271,18 @@ def calcular_modelo(p: dict) -> dict:
     # ── OTROS COSTOS: ITOR ───────────────────────────────────────
     serie_oper_recaudo = (serie_ingresos_totales * p["itor_porcentaje_oper_recaudo"]).tolist()
     df_itor = pd.DataFrame(
-        [serie_oper_recaudo,
-         [p["itor_transporte_valores_anual"]] * anios,
-         [p["itor_fideicomiso_admin_anual"]]  * anios],
-        index=["Costo de Operación y Recaudo (9.95% ingresos)",
-               "Costo de Transporte de Valores",
-               "Costo de Fideicomiso Administración"],
+        [serie_oper_recaudo],
+        index=["Costo de Operación y Recaudo (9.95% ingresos)"],
         columns=cols
     ).astype(float)
     df_itor.loc["TOTAL OTROS COSTOS (ITOR)"] = df_itor.sum(axis=0)
     df_itor["TOTAL"] = df_itor.sum(axis=1)
     df_itor = df_itor.round(2)
 
-    # ── FEE METROVÍA ─────────────────────────────────────────────
-    serie_demanda_total = demanda.loc["TOTAL DEMANDA", cols].astype(float)
-    df_fee = pd.DataFrame(
-        [(serie_demanda_total * p["fee_metrovia_por_pasajero"]).tolist()],
-        index=["Fee Metrovía (0.02 × demanda)"],
-        columns=cols
-    ).astype(float)
-    df_fee.loc["TOTAL FEE METROVÍA"] = df_fee.sum(axis=0)
-    df_fee["TOTAL"] = df_fee.sum(axis=1)
-    df_fee = df_fee.round(2)
-
     # ── TOTAL COSTOS VARIABLES ───────────────────────────────────
     serie_cv_total = (
         costos_variables_op.loc["SUBTOTAL COSTOS VARIABLES (operativos)", cols].astype(float)
         + df_itor.loc["TOTAL OTROS COSTOS (ITOR)", cols].astype(float)
-        + df_fee.loc["TOTAL FEE METROVÍA", cols].astype(float)
     )
     df_total_cv = pd.DataFrame(
         [serie_cv_total.tolist()], index=["TOTAL COSTOS VARIABLES"], columns=cols
@@ -423,7 +407,7 @@ def calcular_modelo(p: dict) -> dict:
 
     # ── AÑADIR AÑO 0 A TABLAS SIN ÉL ────────────────────────────
     for df in [demanda, demanda_equivalente, ingresos, ingresos_equivalentes,
-               costos_variables_op, df_itor, df_fee, df_total_cv,
+               costos_variables_op, df_itor, df_total_cv,
                costos_fijos, df_costos_totales, df_utilidad_bruta, df_imp_renta]:
         _add_year0(df)
 
@@ -441,7 +425,6 @@ def calcular_modelo(p: dict) -> dict:
         "ingresos_equivalentes": ingresos_equivalentes,
         "costos_variables_op":   costos_variables_op,
         "df_itor":               df_itor,
-        "df_fee":                df_fee,
         "df_total_cv":           df_total_cv,
         "costos_fijos":          costos_fijos,
         "df_costos_totales":     df_costos_totales,

@@ -327,12 +327,6 @@ def render_sidebar() -> dict:
                 step=0.001, format="%.4f",
                 help=TOOLTIPS["itor_porcentaje_oper_recaudo"], key="itor_pct"
             )
-            p["fee_metrovia_por_pasajero"] = st.number_input(
-                "Fee Metrovía (USD/pasajero)", min_value=0.0,
-                value=float(p["fee_metrovia_por_pasajero"]),
-                step=0.005, format="%.3f",
-                help=TOOLTIPS["fee_metrovia_por_pasajero"], key="fee_metrovia"
-            )
 
         return p
 
@@ -1049,8 +1043,6 @@ def render_tab_costos(res: dict):
     render_tabla(res["costos_variables_op"], titulo="Mantenimiento y Combustible (Buses SITU)")
     st.divider()
     render_tabla(res["df_itor"],             titulo="Otros Costos – ITOR")
-    st.divider()
-    render_tabla(res["df_fee"],              titulo="Fee Metrovía")
     st.divider()
     render_tabla(res["df_total_cv"],         titulo="TOTAL Costos Variables")
 

@@ -121,11 +121,6 @@ SITU_DEFAULT = {
 
     # --- Otros Costos: ITOR ---
     "itor_porcentaje_oper_recaudo":  0.0995,
-    "itor_transporte_valores_anual": 104_430.27,
-    "itor_fideicomiso_admin_anual":   15_600.00,
-
-    # --- Fee Metrovia ---
-    "fee_metrovia_por_pasajero": 0.02,
 
     # --- Parametros macroeconómicos ---
     "inflacion_anual":  0.0155,   # 1.55%
@@ -159,5 +154,4 @@ TOOLTIPS = {
     "inflacion_anual":            "Tasa de inflación anual aplicada a sueldos, neumáticos y gastos administrativos.",
     "tasa_descuento":             "Tasa de descuento para el cálculo del VAN (Valor Actual Neto).",
     "itor_porcentaje_oper_recaudo": "Porcentaje de los ingresos totales que corresponde al costo de operación y recaudo ITOR.",
-    "fee_metrovia_por_pasajero":  "Fee fijo pagado a Metrovía por cada pasajero transportado (USD).",
 }
