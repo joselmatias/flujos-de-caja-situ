@@ -70,7 +70,7 @@ SITU_DEFAULT = {
 
     # --- Costos Variables: Combustible ---
     "precio_galon":          2.80,
-    "rend_km_gal_buses":     7.90,   # km/gal buses 12 m
+    "rend_km_gal_buses":     8.37,   # km/gal buses 12 m
 
     # --- Costos Variables: Neumaticos ---
     "costo_llanta":                   450.0,
