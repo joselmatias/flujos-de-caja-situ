@@ -78,7 +78,7 @@ SITU_DEFAULT = {
     "renovaciones_llantas_por_anio":      1,
 
     # --- Costos Fijos: Financiamiento ---
-    "precio_bus":             156_848.0,
+    "precio_bus":              94_617.37,
     "tasa_interes_anual":        0.0948,
     "plazo_anios_financ":             7,
     "porcentaje_financiado":       0.80,
