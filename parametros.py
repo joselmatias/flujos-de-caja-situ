@@ -17,7 +17,7 @@ SITU_DEFAULT = {
     # --- Demanda base (Año 1) – calculada como:
     #     pasajeros_por_bus_dia × dias_operacion_anual × numero_buses ---
     "pasajeros_por_bus_dia":   504,
-    "dias_operacion_anual":    365,
+    "dias_operacion_anual":    341,
 
     # Distribución porcentual de demanda por categoría (sumar 100%)
     "distribucion_demanda": {
@@ -122,7 +122,7 @@ SITU_DEFAULT = {
     # --- Otros Costos: ITOR ---
     # Solo aplica cuando tarifa GENERAL supera la tarifa base
     "tarifa_general_base":           0.30,
-    "itor_porcentaje_oper_recaudo":  0.0995,
+    "itor_porcentaje_oper_recaudo":  0.0999,
 
     # --- Parametros macroeconómicos ---
     "inflacion_anual":  0.0155,   # 1.55%
