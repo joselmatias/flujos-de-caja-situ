@@ -21,25 +21,19 @@ SITU_DEFAULT = {
 
     # Distribución porcentual de demanda por categoría (sumar 100%)
     "distribucion_demanda": {
-        "ESTUDIANTES":              2.16,
-        "ADULTOS MAYORES":          6.30,
-        "CAPACIDADES ESPECIALES":   2.35,
-        "GENERAL":                 89.19,
+        "USUARIOS PREFERENCIALES":  7.54,
+        "GENERAL":                 92.46,
     },
 
-    # base_demanda calculada: 504 × 365 × 1933 = 355,620,360
+    # base_demanda calculada: 504 × 341 × 1933 = 332,213,112
     "base_demanda": {
-        "ESTUDIANTES":            7_681_400,
-        "ADULTOS MAYORES":       22_404_082,
-        "CAPACIDADES ESPECIALES": 8_357_078,
-        "GENERAL":              317_177_800,
+        "USUARIOS PREFERENCIALES": 25_048_868,
+        "GENERAL":                307_164_244,
     },
 
     # --- Tarifas (USD por pasajero) ---
     "tarifas": {
-        "ESTUDIANTES":              0.15,
-        "ADULTOS MAYORES":          0.15,
-        "CAPACIDADES ESPECIALES":   0.15,
+        "USUARIOS PREFERENCIALES":  0.15,
         "GENERAL":                  0.30,
     },
 
@@ -51,9 +45,7 @@ SITU_DEFAULT = {
 
     # --- Equivalencia (divisor por categoría) ---
     "divisores_equivalencia": {
-        "ESTUDIANTES":              2,
-        "ADULTOS MAYORES":          2,
-        "CAPACIDADES ESPECIALES":   3,
+        "USUARIOS PREFERENCIALES":  2,
         "GENERAL":                  1,
     },
 
