@@ -120,6 +120,8 @@ SITU_DEFAULT = {
     "otros_adm_anual": 14_000.00,
 
     # --- Otros Costos: ITOR ---
+    # Solo aplica cuando tarifa GENERAL supera la tarifa base
+    "tarifa_general_base":           0.30,
     "itor_porcentaje_oper_recaudo":  0.0995,
 
     # --- Parametros macroeconómicos ---

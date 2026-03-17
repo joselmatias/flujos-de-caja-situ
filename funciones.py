@@ -269,7 +269,14 @@ def calcular_modelo(p: dict) -> dict:
     costos_variables_op = costos_variables_op.round(2)
 
     # ── OTROS COSTOS: ITOR ───────────────────────────────────────
-    serie_oper_recaudo = (serie_ingresos_totales * p["itor_porcentaje_oper_recaudo"]).tolist()
+    # Solo aplica cuando la tarifa GENERAL supera la tarifa base
+    tarifa_actual  = float(p["tarifas"]["GENERAL"])
+    tarifa_base    = float(p.get("tarifa_general_base", 0.30))
+    aplica_itor    = tarifa_actual > tarifa_base
+    serie_oper_recaudo = (
+        (serie_ingresos_totales * p["itor_porcentaje_oper_recaudo"]).tolist()
+        if aplica_itor else [0.0] * anios
+    )
     df_itor = pd.DataFrame(
         [serie_oper_recaudo],
         index=["Costo de Operación y Recaudo (9.95% ingresos)"],
