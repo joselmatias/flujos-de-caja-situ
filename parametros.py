@@ -9,7 +9,7 @@ SITU_DEFAULT = {
     "nombre": "SITU",
 
     # --- Horizonte temporal ---
-    "anios": 12,
+    "anios": 10,
 
     # --- Flota ---
     "numero_buses": 1933,
@@ -46,7 +46,7 @@ SITU_DEFAULT = {
     # --- Tasas de crecimiento anuales (11 valores para 12 años) ---
     "tasas_por_anio": [
         0.0091, 0.0091, 0.0090, 0.0089, 0.0088,
-        0.0087, 0.0087, 0.0086, 0.0085, 0.0084, 0.0084
+        0.0087, 0.0087, 0.0086, 0.0085
     ],
 
     # --- Equivalencia (divisor por categoría) ---
@@ -146,7 +146,7 @@ TOOLTIPS = {
     "dias_operacion_anual":       "Días de operación por año (normalmente 365).",
     "numero_buses":               "Número total de buses SITU de 12 m (operativos + reserva).",
     "tarifas":                    "Precio del pasaje en USD por tipo de pasajero.",
-    "tasas_por_anio":             "Tasa de crecimiento de la demanda para cada año (11 valores para 12 años).",
+    "tasas_por_anio":             "Tasa de crecimiento de la demanda para cada año (9 valores para 10 años).",
     "km_totales_buses":           "Kilómetros totales recorridos por la flota SITU durante el período de análisis.",
     "costo_km_buses":             "Costo de mantenimiento por kilómetro para buses SITU de 12 m.",
     "precio_galon":               "Precio del galón de combustible en USD.",
