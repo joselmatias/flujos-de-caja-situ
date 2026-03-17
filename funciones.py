@@ -344,9 +344,7 @@ def calcular_modelo(p: dict) -> dict:
     seguro_total_anual     = p["seguro_fiel_cumpl"] + p["seguro_todo_riesgo_unidades"]
     serv_basicos_anual     = p["serv_basicos_mensual"] * 12
     total_buses            = int(p["numero_buses"])
-    matricula_total        = total_buses * p["matricula_precio"]
-    seg_unid_total_anual   = total_buses * p["seg_unid_precio_mensual"] * 12
-    matric_impuestos_anual = matricula_total + p["iva_compras"] + seg_unid_total_anual
+    matric_impuestos_anual = total_buses * p["matricula_precio"]
 
     df_seguro    = pd.DataFrame([[seguro_total_anual]     * anios], index=["Seguro"],                columns=cols).astype(float)
     df_serv      = pd.DataFrame([[serv_basicos_anual]     * anios], index=["Servicios básicos"],     columns=cols).astype(float)

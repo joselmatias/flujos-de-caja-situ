@@ -114,9 +114,7 @@ SITU_DEFAULT = {
     "serv_basicos_mensual": 1_400.0,
 
     # --- Costos Fijos: Matricula e impuestos ---
-    "matricula_precio":         250.00,
-    "iva_compras":           11_500.00,
-    "seg_unid_precio_mensual":  144.59,
+    "matricula_precio":         272.92,
 
     # --- Costos Fijos: Otros administrativos ---
     "otros_adm_anual": 14_000.00,
