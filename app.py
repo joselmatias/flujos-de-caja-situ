@@ -1099,17 +1099,38 @@ def render_tab_equilibrio(res: dict):
 
     tarifa_equilibrio = costos_sin_itor_total / demanda_total if demanda_total > 0 else 0.0
 
+    # Tarifas técnicas con rentabilidad
+    rentabilidades = [0.14, 0.17, 0.20]
+    tarifas_tecnicas = {r: tarifa_equilibrio * (1 + r) for r in rentabilidades}
+
+    # ITOR por pasajero
+    itor_total = float(
+        res["df_itor"].loc["TOTAL OTROS COSTOS (ITOR)", cols_anios].astype(float).values.sum()
+    )
+    tarifa_itor = itor_total / demanda_total if demanda_total > 0 else 0.0
+    tarifa_equilibrio_mas_itor = tarifa_equilibrio + tarifa_itor
+
     # ── Tabla resumen ─────────────────────────────────────────────
     datos = {
         "Rubro": [
             "Costos Totales sin ITOR (USD)",
             "Demanda Total (pasajeros)",
             "Tarifa de Equilibrio / Técnica (USD)",
+            "Tarifa Técnica (Rentabilidad 14%)",
+            "Tarifa Técnica (Rentabilidad 17%)",
+            "Tarifa Técnica (Rentabilidad 20%)",
+            "ITOR (USD)",
+            "Tarifa de Equilibrio más ITOR (USD)",
         ],
         "Valor (acumulado horizonte proyecto)": [
             f"${costos_sin_itor_total:,.2f}",
             f"{demanda_total:,.0f}",
             f"${tarifa_equilibrio:.4f}",
+            f"${tarifas_tecnicas[0.14]:.4f}",
+            f"${tarifas_tecnicas[0.17]:.4f}",
+            f"${tarifas_tecnicas[0.20]:.4f}",
+            f"${tarifa_itor:.4f}",
+            f"${tarifa_equilibrio_mas_itor:.4f}",
         ],
     }
     import pandas as pd
