@@ -1210,7 +1210,7 @@ def main():
     st.markdown("""
     <div class="main-header">
         <h1>🚌 Flujo de Caja SITU – Panel Ejecutivo</h1>
-        <p>Sistema Integrado de Transporte Urbano · Buses 12 m · Modelo financiero a 12 años</p>
+        <p>Sistema Integrado de Transporte Urbano · Buses 12 m · Modelo financiero a 10 años</p>
     </div>
     """, unsafe_allow_html=True)
 
