@@ -323,14 +323,6 @@ def calcular_modelo(p: dict) -> dict:
     ).astype(float)
     df_sueldos.loc["SUBTOTAL SUELDOS"] = df_sueldos.sum(axis=0)
 
-    # ── COSTOS FIJOS: Gastos Administrativos ─────────────────────
-    df_adm_items = pd.DataFrame(p["gastos_adm_items"])
-    total_adm_anual_base = float((df_adm_items["cantidad"] * df_adm_items["precio"]).sum()) * 12.0
-    df_gastos_adm = pd.DataFrame(
-        [serie_inflacion(total_adm_anual_base, anios, p["inflacion_anual"])],
-        index=["Gastos Administrativos"], columns=cols
-    ).astype(float)
-
     # ── COSTOS FIJOS: Otros rubros ───────────────────────────────
     seguro_total_anual     = p["seguro_fiel_cumpl"] + p["seguro_todo_riesgo_unidades"]
     serv_basicos_anual     = p["serv_basicos_mensual"] * 12
@@ -347,11 +339,11 @@ def calcular_modelo(p: dict) -> dict:
 
     # ── COSTOS FIJOS: Consolidado ─────────────────────────────────
     costos_fijos = pd.concat(
-        [df_financ, df_sueldos, df_gastos_adm, df_seguro, df_serv, df_matric, df_otros_adm],
+        [df_financ, df_sueldos, df_seguro, df_serv, df_matric, df_otros_adm],
         axis=0
     )
     costos_fijos.loc["TOTAL COSTOS FIJOS"] = costos_fijos.loc[
-        ["Costos de financiamiento", "SUBTOTAL SUELDOS", "Gastos Administrativos",
+        ["Costos de financiamiento", "SUBTOTAL SUELDOS",
          "Seguro", "Servicios básicos", "Matrícula e impuestos",
          "Otros costos administrativos"]
     ].sum(axis=0)

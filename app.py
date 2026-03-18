@@ -1070,7 +1070,7 @@ def render_tab_costos(res: dict):
     render_tabla(res["df_total_cv"],         titulo="TOTAL Costos Variables")
 
     st.subheader("Costos Fijos (USD)")
-    render_tabla(res["costos_fijos"],        titulo="Financiamiento, Sueldos y Gastos Administrativos")
+    render_tabla(res["costos_fijos"],        titulo="Financiamiento y Sueldos")
     st.divider()
     render_tabla(res["df_costos_totales"],   titulo="TOTAL Costos (Variables + Fijos)")
 
