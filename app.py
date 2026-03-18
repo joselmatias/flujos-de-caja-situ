@@ -1149,8 +1149,8 @@ def render_tab_equilibrio(res: dict):
     color = "green" if diferencia >= 0 else "red"
     icono = "✅" if diferencia >= 0 else "⚠️"
     st.markdown(
-        f"{icono} Tarifa actual <b>${tarifa_actual:.2f}</b> — "
-        f"Diferencia vs equilibrio: <span style='color:{color}'><b>${diferencia:+.4f}</b></span>",
+        f"{icono} Tarifa actual <b>&#36;{tarifa_actual:.2f}</b> — "
+        f"Diferencia vs equilibrio: <span style='color:{color}'><b>&#36;{diferencia:+.4f}</b></span>",
         unsafe_allow_html=True,
     )
     if diferencia >= 0:
