@@ -1115,7 +1115,7 @@ def render_tab_equilibrio(res: dict):
         "Rubro": [
             "Costos Totales sin ITOR (USD)",
             "Demanda Total (pasajeros)",
-            "Tarifa de Equilibrio / Técnica (USD)",
+            "Tarifa de Equilibrio  Técnica (USD)",
             "Tarifa Técnica (Rentabilidad 14%)",
             "Tarifa Técnica (Rentabilidad 17%)",
             "Tarifa Técnica (Rentabilidad 20%)",
@@ -1149,8 +1149,8 @@ def render_tab_equilibrio(res: dict):
     color = "green" if diferencia >= 0 else "red"
     icono = "✅" if diferencia >= 0 else "⚠️"
     st.markdown(
-        f"{icono} Tarifa actual **${tarifa_actual:.2f}** — "
-        f"Diferencia vs equilibrio: <span style='color:{color}'>**${diferencia:+.4f}**</span>",
+        f"{icono} Tarifa actual <b>${tarifa_actual:.2f}</b> — "
+        f"Diferencia vs equilibrio: <span style='color:{color}'><b>${diferencia:+.4f}</b></span>",
         unsafe_allow_html=True,
     )
     if diferencia >= 0:
