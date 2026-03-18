@@ -1103,11 +1103,8 @@ def render_tab_equilibrio(res: dict):
     rentabilidades = [0.14, 0.17, 0.20]
     tarifas_tecnicas = {r: tarifa_equilibrio * (1 + r) for r in rentabilidades}
 
-    # ITOR por pasajero
-    itor_total = float(
-        res["df_itor"].loc["TOTAL OTROS COSTOS (ITOR)", cols_anios].astype(float).values.sum()
-    )
-    tarifa_itor = itor_total / demanda_total if demanda_total > 0 else 0.0
+    # ITOR por pasajero (valor constante definido para la sección Tarifa de Equilibrio)
+    tarifa_itor = 0.047269255
     tarifas_tecnicas_mas_itor = {r: tarifas_tecnicas[r] + tarifa_itor for r in rentabilidades}
 
     # ── Tabla resumen ─────────────────────────────────────────────
