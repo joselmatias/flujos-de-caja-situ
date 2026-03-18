@@ -146,17 +146,30 @@ def render_sidebar() -> dict:
         p = copy.deepcopy(SITU_DEFAULT)
 
         if st.button("↺ Restablecer valores", use_container_width=True):
-            _prefijos = ("dem_", "tar_", "dist_", "tasa_")
-            _keys_fijas = [
-                "precio_galon", "rend_buses", "km_buses", "costo_km_buses",
-                "costo_llanta", "precio_bus", "tasa_interes", "plazo_financ",
-                "pct_financiado", "salario", "choferes_por_bus", "inflacion",
-                "tasa_descuento", "itor_pct",
-            ]
-            for _k in list(st.session_state.keys()):
-                if _k in _keys_fijas or any(_k.startswith(_p) for _p in _prefijos):
-                    del st.session_state[_k]
-            p = copy.deepcopy(SITU_DEFAULT)
+            _d = copy.deepcopy(SITU_DEFAULT)
+            st.session_state["dem_numero_buses"]  = int(_d["numero_buses"])
+            st.session_state["dem_pax_dia"]       = int(_d["pasajeros_por_bus_dia"])
+            st.session_state["dem_dias_op"]       = int(_d["dias_operacion_anual"])
+            for _cat, _v in _d["distribucion_demanda"].items():
+                st.session_state[f"dist_{_cat}"] = float(_v)
+            for _cat, _v in _d["tarifas"].items():
+                st.session_state[f"tar_{_cat}"] = float(_v)
+            for _i, _t in enumerate(_d["tasas_por_anio"]):
+                st.session_state[f"tasa_{_i}"] = float(_t)
+            st.session_state["precio_galon"]     = float(_d["precio_galon"])
+            st.session_state["rend_buses"]        = float(_d["rend_km_gal_buses"])
+            st.session_state["km_buses"]          = int(_d["km_totales_buses"])
+            st.session_state["costo_km_buses"]    = float(_d["costo_km_buses"])
+            st.session_state["costo_llanta"]      = float(_d["costo_llanta"])
+            st.session_state["precio_bus"]        = float(_d["precio_bus"])
+            st.session_state["tasa_interes"]      = float(_d["tasa_interes_anual"])
+            st.session_state["plazo_financ"]      = int(_d["plazo_anios_financ"])
+            st.session_state["pct_financiado"]    = float(_d["porcentaje_financiado"])
+            st.session_state["salario"]           = float(_d["salario_mensual"])
+            st.session_state["choferes_por_bus"]  = float(_d["choferes_por_bus"])
+            st.session_state["inflacion"]         = float(_d["inflacion_anual"])
+            st.session_state["tasa_descuento"]    = float(_d["tasa_descuento"])
+            st.session_state["itor_pct"]          = float(_d["itor_porcentaje_oper_recaudo"])
             st.rerun()
 
         st.divider()
