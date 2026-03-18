@@ -1148,15 +1148,6 @@ def render_tab_equilibrio(res: dict):
     diferencia    = tarifa_actual - tarifa_equilibrio
     color = "green" if diferencia >= 0 else "red"
     icono = "✅" if diferencia >= 0 else "⚠️"
-    st.markdown(
-        f"{icono} Tarifa actual <b>&#36;{tarifa_actual:.2f}</b> — "
-        f"Diferencia vs equilibrio: <span style='color:{color}'><b>&#36;{diferencia:+.4f}</b></span>",
-        unsafe_allow_html=True,
-    )
-    if diferencia >= 0:
-        st.success(f"La tarifa actual cubre los costos. Excedente de ${diferencia:.4f} por pasajero.")
-    else:
-        st.error(f"La tarifa actual NO cubre los costos. Déficit de ${abs(diferencia):.4f} por pasajero.")
 
 
 def render_tab_exportar(res: dict, p: dict):
