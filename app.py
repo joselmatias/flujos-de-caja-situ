@@ -1117,7 +1117,7 @@ def render_tab_equilibrio(res: dict):
     st.table(df_eq)
 
     # ── Comparación con tarifa actual ────────────────────────────
-    tarifa_actual = float(res.get("tarifa_general_activa", p.get("tarifas", {}).get("GENERAL", 0.30)))
+    tarifa_actual = float(res.get("tarifa_general_activa", 0.30))
     diferencia    = tarifa_actual - tarifa_equilibrio
     color = "green" if diferencia >= 0 else "red"
     icono = "✅" if diferencia >= 0 else "⚠️"
