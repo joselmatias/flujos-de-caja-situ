@@ -447,11 +447,16 @@ def calcular_modelo(p: dict) -> dict:
         "serie_costos":    df_costos_totales.loc["COSTOS TOTALES", cols].astype(float).values,
         "serie_cv":        df_total_cv.loc["TOTAL COSTOS VARIABLES", cols].astype(float).values,
         "serie_cf":        costos_fijos.loc["TOTAL COSTOS FIJOS", cols].astype(float).values,
+        "serie_costos_sin_itor": (
+            costos_variables_op.loc["SUBTOTAL COSTOS VARIABLES (operativos)", cols].astype(float).values +
+            costos_fijos.loc["TOTAL COSTOS FIJOS", cols].astype(float).values
+        ),
         # KPIs
         "van":          van,
         "tir":          tir,
         "flujo_ultimo": flujo_ultimo,
         "payback":      payback,
+        "tarifa_general_activa": tarifa_actual,
     }
 
 

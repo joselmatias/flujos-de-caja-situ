@@ -1078,6 +1078,60 @@ def render_tab_flujo(res: dict):
     st.table(df_ind)
 
 
+def render_tab_equilibrio(res: dict):
+    st.subheader("⚖️ Tarifa de Equilibrio")
+    st.markdown(
+        "Calcula la **tarifa técnica** que cubre exactamente los costos totales "
+        "del sistema SITU, excluyendo el ITOR, en el horizonte del proyecto."
+    )
+
+    cols_anios = res["cols_anios"]
+
+    # Totales acumulados en el horizonte del proyecto
+    costos_sin_itor_total = float(res["serie_costos_sin_itor"].sum())
+
+    # Demanda total: suma de todos los pasajeros de todas las categorías
+    demanda_df = res["demanda"]
+    filas_dem  = [r for r in demanda_df.index if r not in ("TOTAL DEMANDA",)]
+    demanda_total = float(
+        demanda_df.loc[filas_dem, cols_anios].astype(float).values.sum()
+    )
+
+    tarifa_equilibrio = costos_sin_itor_total / demanda_total if demanda_total > 0 else 0.0
+
+    # ── Tabla resumen ─────────────────────────────────────────────
+    datos = {
+        "Rubro": [
+            "Costos Totales sin ITOR (USD)",
+            "Demanda Total (pasajeros)",
+            "Tarifa de Equilibrio / Técnica (USD)",
+        ],
+        "Valor (acumulado horizonte proyecto)": [
+            f"${costos_sin_itor_total:,.2f}",
+            f"{demanda_total:,.0f}",
+            f"${tarifa_equilibrio:.4f}",
+        ],
+    }
+    import pandas as pd
+    df_eq = pd.DataFrame(datos).set_index("Rubro")
+    st.table(df_eq)
+
+    # ── Comparación con tarifa actual ────────────────────────────
+    tarifa_actual = float(res.get("tarifa_general_activa", p.get("tarifas", {}).get("GENERAL", 0.30)))
+    diferencia    = tarifa_actual - tarifa_equilibrio
+    color = "green" if diferencia >= 0 else "red"
+    icono = "✅" if diferencia >= 0 else "⚠️"
+    st.markdown(
+        f"{icono} Tarifa actual **${tarifa_actual:.2f}** — "
+        f"Diferencia vs equilibrio: <span style='color:{color}'>**${diferencia:+.4f}**</span>",
+        unsafe_allow_html=True,
+    )
+    if diferencia >= 0:
+        st.success(f"La tarifa actual cubre los costos. Excedente de ${diferencia:.4f} por pasajero.")
+    else:
+        st.error(f"La tarifa actual NO cubre los costos. Déficit de ${abs(diferencia):.4f} por pasajero.")
+
+
 def render_tab_exportar(res: dict, p: dict):
     st.subheader("Exportar resultados")
     st.markdown("""
@@ -1162,12 +1216,13 @@ def main():
         st.stop()
 
     # ── Pestañas ─────────────────────────────────────────────────
-    tab_res, tab_dem, tab_ing, tab_cos, tab_flu, tab_exp = st.tabs([
+    tab_res, tab_dem, tab_ing, tab_cos, tab_flu, tab_teq, tab_exp = st.tabs([
         "📊 Resumen Ejecutivo",
         "👥 Demanda",
         "💵 Ingresos",
         "📦 Costos",
         "💰 Flujo de Caja",
+        "⚖️ Tarifa de Equilibrio",
         "📥 Exportar",
     ])
 
@@ -1181,6 +1236,8 @@ def main():
         render_tab_costos(resultado)
     with tab_flu:
         render_tab_flujo(resultado)
+    with tab_teq:
+        render_tab_equilibrio(resultado)
     with tab_exp:
         render_tab_exportar(resultado, p)
 
