@@ -146,6 +146,16 @@ def render_sidebar() -> dict:
         p = copy.deepcopy(SITU_DEFAULT)
 
         if st.button("↺ Restablecer valores", use_container_width=True):
+            _prefijos = ("dem_", "tar_", "dist_", "tasa_")
+            _keys_fijas = [
+                "precio_galon", "rend_buses", "km_buses", "costo_km_buses",
+                "costo_llanta", "precio_bus", "tasa_interes", "plazo_financ",
+                "pct_financiado", "salario", "choferes_por_bus", "inflacion",
+                "tasa_descuento", "itor_pct",
+            ]
+            for _k in list(st.session_state.keys()):
+                if _k in _keys_fijas or any(_k.startswith(_p) for _p in _prefijos):
+                    del st.session_state[_k]
             p = copy.deepcopy(SITU_DEFAULT)
             st.rerun()
 
